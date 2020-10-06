@@ -8,10 +8,10 @@
             <img class="thumbLogin" src="<?= base_url() ?>images/user.png">
           </div>
             <div class="loginForm col-md-5">
-              <form>
+              <form method="post" action="<?= base_url() ?>login/signIn">
                 <div class="form-group">
                   <label for="name" class="bmd-label-floating">Nome</label>
-                  <input type="text" class="form-control" id="name">
+                  <input type="text" class="form-control" id="nome" name="nome">
                   <span class="bmd-help">Informe seu nome para entrar!</span>
                 </div>
 

@@ -106,5 +106,9 @@ h3 {
 
 .btn-login {
   border-radius: 20px;
-  float: right; 
+  float: right;
+}
+
+.close:hover {
+  cursor: pointer;
 }

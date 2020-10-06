@@ -5,6 +5,7 @@ class chatModel extends CI_Model {
     return $this -> db -> get("message") -> result();
   }
 
+  //Insere nova mensagem na tabela message do banco de dados
   public function newMessage($message) {
     $this -> db -> insert("message", $message);
   }

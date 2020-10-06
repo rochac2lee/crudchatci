@@ -3,17 +3,15 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <h3>Chat</h3>
+          <h3>Chat</h3> <i onclick=window.location.href="<?= base_url() ?>login/logout" class="close right fa fa-2x fa-sign-out-alt"></i>
 
           <div class="users">
             <img class="thumb" src="<?= base_url() ?>images/user.png">
-            <p class="nameUser">Cleberli</p>
+            <p class="nameUser"><?= $_SESSION['loggedUser']['nome'] ?></p>
           </div>
         </div>
         <div class="col-md-8">
           <div id="allMessages" class="allMessages">
-
-
 
           <!--
 

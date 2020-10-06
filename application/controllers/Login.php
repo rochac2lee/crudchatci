@@ -14,9 +14,9 @@ class Login extends CI_Controller {
 	}
 
 	public function signIn() {
-		$nome     = $_POST["name"];
 
-		$user = $this -> loginModel -> store($nome);
+		$user = $_POST;
+		$this -> loginModel -> signIn($user);
 
 		if ($user) {
 			$this -> session -> set_userdata("loggedUser", $user);
@@ -27,5 +27,9 @@ class Login extends CI_Controller {
 
 	}
 
+	public function logout() {
+		$this -> session -> unset_userdata("loggedUser");
+		redirect("login");
+	}
 
 }
