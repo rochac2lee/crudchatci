@@ -9,8 +9,8 @@ HTML, JS
 Server Requirements
 *******************
 
-- `PHP versão 5.6 ou mais novo.`_
-- `DB Mysql`_.
+- PHP versão 5.6 ou mais novo.
+- DB Mysql.
 
 
 ************
@@ -18,6 +18,8 @@ Installation
 ************
 
 Rode em seu banco de dados o script "crudchatci.sql".
+
+Edite as Configurações de Banco de Dados em Aplication/database.php
 
 *******
 License

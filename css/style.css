@@ -1,0 +1,63 @@
+/*
+
+Autor: rochac2lee
+Description: Código criado para o Chat com CodeIgniter
+
+*/
+
+body, html {
+  height: 100%;
+  /*font-family: Bison, sans-serif;*/
+}
+
+h3 {
+  font-family: Bison, sans-serif;
+}
+
+.section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.right {
+  float: right;
+}
+
+.btn-clear {
+  border-radius: 20px;
+}
+
+.btn-send {
+  border-radius: 20px;
+}
+
+.thumb {
+  width: 10%;
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.nameUser {
+  display: inline-flex;
+  vertical-align: top;
+  font-size: 1.5em;
+}
+
+.space {
+  padding-right: 5px;
+}
+
+.thumbMessage {
+  width: 5%;
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.textMessage {
+  display: inline-flex;
+  vertical-align: middle;
+  font-size: 1em;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f1f0f0;
+}
