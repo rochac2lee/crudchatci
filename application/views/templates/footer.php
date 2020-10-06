@@ -16,6 +16,7 @@ function clearMessage() {
 $(document).ready(function() {
   $("#btnNewMessage").click(function() {
   var message = document.getElementById("message").value;
+  var nome    = document.getElementById("message").value;
 
     $.post("<?= base_url() ?>chat/newMessage", {message: message},
     function(data) {
