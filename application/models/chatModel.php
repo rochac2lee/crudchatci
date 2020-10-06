@@ -9,4 +9,8 @@ class chatModel extends CI_Model {
     $this -> db -> insert("message", $message);
   }
 
+  public function viewMessage() {
+    return $this -> db -> get("message") -> result();
+  }
+
 }

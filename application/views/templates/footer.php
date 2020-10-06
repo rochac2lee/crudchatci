@@ -5,12 +5,14 @@
 
 <script>
 
+//Função que limpa o input de mensagem
 function clearMessage() {
   document.getElementById("message").value = "";
   document.getElementById("divMessage").classList.remove('is-focused');
   document.getElementById("divMessage").classList.remove('is-filled');
 }
 
+//Função que adiciona novas mensagens
 $(document).ready(function() {
   $("#btnNewMessage").click(function() {
   var message = document.getElementById("message").value;
@@ -24,8 +26,63 @@ $(document).ready(function() {
     document.getElementById("divMessage").classList.remove('is-focused');
     document.getElementById("divMessage").classList.remove('is-filled');
 
+    $('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
+
   });
 });
+
+//Função de Busca por novas Mensagens
+function CriaRequest() {
+ try {
+   request = new XMLHttpRequest();
+ } catch (IEAtual){
+   try {
+     request = new ActiveXObject("Msxml2.XMLHTTP");
+   } catch(IEAntigo) {
+     try {
+       request = new ActiveXObject("Microsoft.XMLHTTP");
+     } catch(falha) {
+       request = false;
+     }
+   }
+ }
+ if (!request)
+   alert("Seu Navegador não suporta Ajax!");
+ else
+   return request;
+}
+function searchMessages() {
+
+ // Declaração de Variáveis
+ var result = document.getElementById("allMessages");
+ var xmlreq = CriaRequest();
+
+ // Iniciar uma requisição
+ xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
+ setTimeout(searchMessages, 100);
+
+ // Atribui uma função para ser executada sempre que houver uma mudança de ado
+ xmlreq.onreadystatechange = function(){
+
+   // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+   if (xmlreq.readyState == 4) {
+
+     // Verifica se o arquivo foi encontrado com sucesso
+     if (xmlreq.status == 200) {
+
+       result.innerHTML = xmlreq.responseText;
+       document.getElementById("allMessages").value = result.innerHTML;
+
+      //alert(result);
+     }else{
+       result.innerHTML = "Erro: " + xmlreq.statusText;
+     }
+   }
+ };
+ xmlreq.send(null);
+}; searchMessages();
+
+$('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
 
 </script>
 

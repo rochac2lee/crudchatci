@@ -11,15 +11,22 @@
           </div>
         </div>
         <div class="col-md-8">
+          <div id="allMessages" class="allMessages">
 
-          <div id="allMessages">
+
+
+          <!--
+
             <div id="viewMessage">
-
-              <img class="thumbMessage" src="<?= base_url() ?>images/user.png">
-              <p class="textMessage">Mensagem escrita aqui</p>
-
+              <img class="thumbMessageRight" src="<?= base_url() ?>images/user.png">
+              <p class="textMessageRight animated fadeInUp">Mensagem escrita aqui</p>
             </div>
+
+          -->
+
           </div>
+
+          <div class="clearfix"></div>
 
           <form action="javascript:void(0)" method="post">
             <div id="divMessage" class="form-group">

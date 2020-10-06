@@ -15,8 +15,8 @@ h3 {
 }
 
 .section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 2.5rem;
 }
 
 .right {
@@ -47,14 +47,42 @@ h3 {
   padding-right: 5px;
 }
 
+.allMessages {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .thumbMessage {
   width: 5%;
+  vertical-align: top;
   display: inline-flex;
   border-radius: 50%;
 }
 
 .textMessage {
+  max-width: 45%;
   display: inline-flex;
+  word-wrap: break-word;
+  vertical-align: middle;
+  font-size: 1em;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f1f0f0;
+}
+
+.thumbMessageRight {
+  width: 5%;
+  vertical-align: top;
+  float: right;
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.textMessageRight {
+  max-width: 45%;
+  float: right;
+  display: inline-flex;
+  word-wrap: break-word;
   vertical-align: middle;
   font-size: 1em;
   padding: 12px 16px;

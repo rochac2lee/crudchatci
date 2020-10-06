@@ -19,4 +19,9 @@ class Chat extends CI_Controller {
     $this -> chatModel -> newMessage($message);
 	}
 
+	public function viewMessage() {
+		$data["messages"] = $this -> chatModel -> viewMessage();
+		$this->load->view('pages/message', $data);
+	}
+
 }

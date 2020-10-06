@@ -11,5 +11,6 @@
 
 <!-- Código CSS criado para aplicação Chat -->
   <link rel="stylesheet" href="<?= base_url() ?>css/style.css">
+  <link rel="stylesheet" href="<?= base_url() ?>css/animate.css">
 </head>
 <body>
