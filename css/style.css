@@ -89,3 +89,22 @@ h3 {
   border-radius: 12px;
   background: #f1f0f0;
 }
+
+.login {
+  text-align: center;
+}
+
+.thumbLogin {
+  width: 10%;
+  margin-top: 15px;
+  border-radius: 50%;
+}
+
+.loginForm {
+  margin: 0 auto;
+}
+
+.btn-login {
+  border-radius: 20px;
+  float: right; 
+}
