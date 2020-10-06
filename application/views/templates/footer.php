@@ -16,9 +16,10 @@ function clearMessage() {
 $(document).ready(function() {
   $("#btnNewMessage").click(function() {
   var message = document.getElementById("message").value;
-  var nome    = document.getElementById("message").value;
+  var autor   = $('.nameUser').text();
+  var date    = $('.clock').text();
 
-    $.post("<?= base_url() ?>chat/newMessage", {message: message},
+    $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
     function(data) {
       $("#return").html(data);
     } , "html");
@@ -60,7 +61,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 100);
+ setTimeout(searchMessages, 1000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
@@ -73,6 +74,9 @@ function searchMessages() {
 
        result.innerHTML = xmlreq.responseText;
        document.getElementById("allMessages").value = result.innerHTML;
+
+       //Sempre mostrando a última mensagem
+       //$('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
 
       //alert(result);
      }else{

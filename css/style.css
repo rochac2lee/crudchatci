@@ -6,12 +6,15 @@ Description: Código criado para o Chat com CodeIgniter
 */
 
 body, html {
+  background: linear-gradient(45deg, #000025, #172b4d);
   height: 100%;
   /*font-family: Bison, sans-serif;*/
 }
 
+
 h3 {
   font-family: Bison, sans-serif;
+  color: rgba(255, 255, 255, .95);
 }
 
 .section {
@@ -24,6 +27,11 @@ h3 {
 }
 
 .btn-clear {
+  display: none;
+  margin-left: 10px;
+  color: rgba(255, 255, 255, .95);
+  background-color: transparent;
+  border-color: #ccc;
   border-radius: 20px;
 }
 
@@ -38,6 +46,7 @@ h3 {
 }
 
 .nameUser {
+  color: rgba(255, 255, 255, .95);
   display: inline-flex;
   vertical-align: top;
   font-size: 1.5em;
@@ -47,21 +56,75 @@ h3 {
   padding-right: 5px;
 }
 
+.message {
+  width: 56%;
+  resize: none;
+  background: #f1f0f0;
+  color: #e4e6eb;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  line-height: 15px;
+  padding: 2% 3% 1% 3%;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 20px;
+  outline: none;
+  display: inline-flex;
+  float: left;
+}
+
+.message:focus {
+  resize: none;
+  width: 56%;
+  background: #445379;
+  color: #e4e6eb;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  line-height: 15px;
+  padding: 2% 3% 1% 3%;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 20px;
+  outline: none;
+  display: inline-flex;
+  float: left;
+}
+
+.message::placeholder {
+  color: #212529;
+  transition: all .15s linear;
+  transition-delay: .15s;
+}
+
+.message:focus::placeholder {
+  color: #f1f0f0;
+}
+
+
 .allMessages {
+  min-height: 400px;
   max-height: 400px;
+  padding: 15px;
+  background-color: #445379;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07) !important;
   overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }
 
 .thumbMessage {
   width: 5%;
   vertical-align: top;
-  display: inline-flex;
+  display: inline-block;
   border-radius: 50%;
 }
 
 .textMessage {
   max-width: 45%;
-  display: inline-flex;
+  margin-left: 10px;
+  display: inline-block;
   word-wrap: break-word;
   vertical-align: middle;
   font-size: 1em;
@@ -74,14 +137,15 @@ h3 {
   width: 5%;
   vertical-align: top;
   float: right;
-  display: inline-flex;
+  display: inline-block;
   border-radius: 50%;
 }
 
 .textMessageRight {
   max-width: 45%;
+  margin-right: 10px;
   float: right;
-  display: inline-flex;
+  display: inline-block;
   word-wrap: break-word;
   vertical-align: middle;
   font-size: 1em;
@@ -109,6 +173,30 @@ h3 {
   float: right;
 }
 
+.title {
+  display: inline-block;
+}
+
+.close {
+  color: rgba(255, 255, 255, .95);
+  display: inline-block;
+  transition: all .15s linear;
+}
+
 .close:hover {
+  color: rgba(0, 0, 0, .5);
   cursor: pointer;
+}
+
+.lblSendMessage {
+  color: #424242;
+}
+
+.clock {
+  display: none;
+}
+
+.lblClock {
+  font-size: 12px;
+  display: inline-block;
 }

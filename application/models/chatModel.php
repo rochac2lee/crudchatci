@@ -11,6 +11,7 @@ class chatModel extends CI_Model {
   }
 
   public function viewMessage() {
+    $this -> db -> order_by("id", "ASC");
     return $this -> db -> get("message") -> result();
   }
 
