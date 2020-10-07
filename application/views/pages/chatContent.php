@@ -7,7 +7,6 @@
           <div class="users">
             <img class="thumb" src="<?= base_url() ?>images/user.png"><p class="me">Bem Vindo, <?= $_SESSION['loggedUser']['nome'] ?>!</p>
           </div>
-
           <p class="linkLoggedusers">
             <button class="btn btn-loggedUsers" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               <i class="dot fas fa-circle"></i> Usuários Online
@@ -19,10 +18,12 @@
               <div id="loggedUsers" class="loggedUsers"></div>
             </div>
           </div>
-
         </div>
         <div class="animated fadeInRight col-md-8">
+          <!-- Lista todas as mensagens não deletadas [soft delete] -->
           <div id="allMessages" class="allMessages"></div>
+
+          <!-- Mostra as opções de Editar e Excluir vindas com os parametros da mensagem -->
           <div id="divOptions" class="divOptions"></div>
 
           <div class="clearfix"></div>
@@ -32,7 +33,9 @@
               <textarea class="form-control message" id="message" rows="3" placeholder="Digite uma mensagem..."></textarea>
             </div>
             <button type="button" onclick="clearMessage()" class="btn btn-clear btn-default">Limpar</button>
-            <button type="button" id="btnNewMessage" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>
+            <div id="divBtnSendMessage">
+              <button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>
+            </div>
           </form>
         </div>
       </div>

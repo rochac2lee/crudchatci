@@ -12,8 +12,17 @@ class loginModel extends CI_Model {
       $this -> db -> insert("users", $user);
       return $user;
     } else {
+      $this -> db -> set("visible", 1);
+      $this -> db -> where("nome", $user['nome']);
+      $this -> db -> update("users");
       return $user;
     }
+  }
+
+  public function logout($user) {
+    $this -> db -> set("visible", 0);
+    $this -> db -> where("nome", $user);
+    return $this -> db -> update("users");
   }
 
 }

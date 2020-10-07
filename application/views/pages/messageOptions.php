@@ -3,12 +3,16 @@
 if($message != null) {
 
   foreach ($message as $m) {
+    $id       = $m->id;
+    $messsage = $m->message;
 
     echo '
 
+    <p id="messageToEdit">'.$messsage.'</p>
+
     <div class="dropdown dropdownOptions animated fadeInRight">
       <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" id="optionEdit" href="#">Editar</a>
+        <a class="dropdown-item" id="optionEdit" href="javascript:void(0)" onclick=messageToEdit('.$id.')>Editar</a>
         <a class="dropdown-item" id="optionDelete" href="javascript:void(0)" onclick="confirmMessageDelete()">Excluir</a>
       </div>
     </div>

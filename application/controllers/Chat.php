@@ -5,7 +5,7 @@ class Chat extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		permission();
+		permission(); //Valida se o usuário tem sessão no navegador [função contruída no arquivo AUTH_HELPER]
 		$this->load->model('chatModel');
 	}
 
@@ -33,6 +33,11 @@ class Chat extends CI_Controller {
 	public function deleteMessage($id) {
     $this -> chatModel -> deleteMessage($id);
   }
+
+	public function editMessage($id) {
+		$editMessage = $_POST;
+		$this -> chatModel -> editMessage($id, $editMessage);
+	}
 
 	public function viewloggedUsers() {
 		$data["users"] = $this -> chatModel -> viewloggedUsers();

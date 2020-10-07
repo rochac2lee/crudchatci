@@ -13,6 +13,7 @@ class Login extends CI_Controller {
 		$this->load->view('pages/login', $data);
 	}
 
+	//Cria o usuário no banco apenas com o nome
 	public function signIn() {
 
 		$user = $_POST;
@@ -27,7 +28,10 @@ class Login extends CI_Controller {
 
 	}
 
+	//destroi a sessão do usuário no navegador
 	public function logout() {
+		$user = $_SESSION['loggedUser']['nome'];
+		$this -> loginModel -> logout($user);
 		$this -> session -> unset_userdata("loggedUser");
 		redirect("login");
 	}

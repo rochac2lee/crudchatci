@@ -10,6 +10,9 @@ $("body").on("click", function() {
   var divOptions = document.querySelector(".options");
   var dropdownOptions = document.querySelector(".dropdownOptions");
   dropdownOptions.classList.add('fadeOutRight');
+  setTimeout(function(){
+    dropdownOptions.innerHTML = "";
+  }, 1000);
 });
 
 function confirmMessageDelete() {
@@ -19,12 +22,12 @@ function confirmMessageDelete() {
 }
 
 function cancelMessageDelete() {
+  var dropdownOptionsDelete = document.querySelector(".dropdownOptionsDelete");
   var divOptions = document.querySelector(".dropdownOptionsDelete");
   document.getElementById('divOptionConfirmDelete').classList.add('fadeOutRight');
   setTimeout(function(){
-    document.getElementById('divOptionConfirmDelete').style.display = "none";
+    dropdownOptionsDelete.innerHTML = "";
   }, 1000);
-
 }
 
 //Função de Requisições
@@ -55,12 +58,43 @@ function clearMessage() {
   document.getElementById("divMessage").classList.remove('is-filled');
 }
 
+//passa  a mensagem para o usuário editar
+function messageToEdit(id) {
+  var message = document.getElementById("messageToEdit").innerHTML;
+  document.getElementById("message").value = message;
+  document.getElementById("message").focus();
+  document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage('+ id +')" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-sync-alt"></i> Atualizar </button>';
+}
+
 //Função que adiciona novas mensagens
-$(document).ready(function() {
-  $("#btnNewMessage").click(function() {
-  var message = document.getElementById("message").value;
-  var autor   = "<?= $_SESSION['loggedUser']['nome'] ?>";
-  var date    = $('.clock').text();
+function newMessage(id) {
+
+  //Valida se tem uma mensagem para editar ou se é uma nova mensagem
+  if (id != null) {
+
+    //envia a mensagem editada
+
+    var message = document.getElementById("message").value;
+    var edited  = 1;
+    var date    = $('.clock').text();
+
+    $.post("<?= base_url() ?>chat/editMessage/" + id, {message: message, autor: autor, edited: edited, date: date},
+    function(data) {
+      $("#return").html(data);
+    } , "html");
+
+    document.getElementById("message").value = "";
+    document.getElementById("divMessage").classList.remove('is-focused');
+    document.getElementById("divMessage").classList.remove('is-filled');
+    document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>';
+
+  } else {
+
+    //envia a nova mensagem
+
+    var message = document.getElementById("message").value;
+    var autor   = "<?= $_SESSION['loggedUser']['nome'] ?>";
+    var date    = $('.clock').text();
 
     $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
     function(data) {
@@ -71,12 +105,11 @@ $(document).ready(function() {
     document.getElementById("divMessage").classList.remove('is-focused');
     document.getElementById("divMessage").classList.remove('is-filled');
 
-    $('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
+  }
 
-  });
-});
+};
 
-//Função que adiciona novas mensagens
+//Passa o id da mensagem como parametro para as opções de editar e excluir
 function options(id) {
 
   // Declaração de Variáveis
@@ -115,7 +148,6 @@ function deleteMessage(id) {
 
   // Iniciar uma requisição
   xmlreq.open("GET", "<?= base_url() ?>chat/deleteMessage/" + id, true);
-  //setTimeout(viewAlmPCItens, 1000);
 
   // Atribui uma função para ser executada sempre que houver uma mudança de ado
   xmlreq.onreadystatechange = function(){
@@ -125,13 +157,20 @@ function deleteMessage(id) {
 
       // Verifica se o arquivo foi encontrado com sucesso
       if (xmlreq.status == 200) {
-
-      }else{
+        //Deletou a mensagem
+      } else {
         result.innerHTML = "Erro: " + xmlreq.statusText;
       }
     }
   };
   xmlreq.send(null);
+
+  //Oculta o dropdown de exclusão da mensagem selecionada
+  var divOptions = document.querySelector(".dropdownOptionsDelete");
+  document.getElementById('divOptionConfirmDelete').classList.add('fadeOutRight');
+  setTimeout(function(){
+    document.getElementById('divOptionConfirmDelete').style.display = "none";
+  }, 1000);
 
 };
 
@@ -144,7 +183,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 60000);
+ setTimeout(searchMessages, 1000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
@@ -157,9 +196,6 @@ function searchMessages() {
 
        result.innerHTML = xmlreq.responseText;
        document.getElementById("allMessages").value = result.innerHTML;
-
-       //Sempre mostrando a última mensagem
-       //$('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
 
       //alert(result);
      }else{
@@ -202,7 +238,12 @@ function searchLoggedUsers() {
  xmlreq.send(null);
 }; searchLoggedUsers();
 
-$('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
+descMessages();
+
+//Deixa sempre visível as ultimas mensagens enviadas
+function descMessages() {
+  $('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
+}
 
 </script>
 
