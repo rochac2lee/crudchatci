@@ -99,8 +99,43 @@ h3 {
   padding-right: 5px;
 }
 
+.options {
+  padding-right: 200px;
+  padding-bottom: 50px;
+  position: fixed;
+  margin: -8px;
+  opacity: 0;
+}
+
+.options:hover {
+  cursor: pointer;
+  position: fixed;
+  margin: -8px;
+  opacity: 1;
+  transition: opacity .3s;
+}
+
+.dropdown-menu a.optionConfirm, .dropdown-menu a.optionCancel {
+  max-width: 50%;
+  display: table-cell!important;
+  min-width: 0;
+}
+
+.textConfirm {
+  padding: 10px 10px 0px 10px;
+  font-size: 14px;
+}
+
+.divMessageOptions {
+  display: block;
+}
+
+#divOptionConfirmDelete {
+  display: none;
+}
+
 .message {
-  width: 56%;
+  width: 80%;
   resize: none;
   background: #f1f0f0;
   color: #e4e6eb;
@@ -141,6 +176,21 @@ h3 {
   color: #f1f0f0;
 }
 
+.dropdown-menu {
+  border-top-right-radius: 15px;
+}
+
+.dropdownOptions {
+  position: absolute;
+  top: -2px;
+  right: 175px;
+}
+
+.dropdownOptionsDelete {
+  position: absolute;
+  top: -2px;
+  right: 202px;
+}
 
 .allMessages {
   min-height: 400px;

@@ -5,6 +5,40 @@
 
 <script>
 
+// Fecha o dropdown se clicar fora
+$("body").on("click", function() {
+    var divOptions = document.querySelector(".options");
+    var dropdownOptions = document.querySelector(".dropdownOptions");
+   dropdownOptions.classList.add('fadeOutRight');
+});
+
+function confirmMessageDelete() {
+  document.getElementById('divOptionConfirmDelete').style.display = "block";
+  document.getElementById('actionConfirm').style.display = "block";
+  document.getElementById('actionCancel').style.display = "block";
+}
+
+//Função de Requisições
+function CriaRequest() {
+ try {
+   request = new XMLHttpRequest();
+ } catch (IEAtual){
+   try {
+     request = new ActiveXObject("Msxml2.XMLHTTP");
+   } catch(IEAntigo) {
+     try {
+       request = new ActiveXObject("Microsoft.XMLHTTP");
+     } catch(falha) {
+       request = false;
+     }
+   }
+ }
+ if (!request)
+   alert("Seu Navegador não suporta Ajax!");
+ else
+   return request;
+}
+
 //Função que limpa o input de mensagem
 function clearMessage() {
   document.getElementById("message").value = "";
@@ -33,26 +67,36 @@ $(document).ready(function() {
   });
 });
 
-//Função de Busca por novas Mensagens
-function CriaRequest() {
- try {
-   request = new XMLHttpRequest();
- } catch (IEAtual){
-   try {
-     request = new ActiveXObject("Msxml2.XMLHTTP");
-   } catch(IEAntigo) {
-     try {
-       request = new ActiveXObject("Microsoft.XMLHTTP");
-     } catch(falha) {
-       request = false;
-     }
-   }
- }
- if (!request)
-   alert("Seu Navegador não suporta Ajax!");
- else
-   return request;
-}
+//Função que adiciona novas mensagens
+  function options(id) {
+
+    // Declaração de Variáveis
+    var result = document.getElementById("divOptions");
+    var xmlreq = CriaRequest();
+
+    // Iniciar uma requisição
+    xmlreq.open("GET", "<?= base_url() ?>chat/viewMessageOptions/" + id, true);
+    //setTimeout(viewAlmPCItens, 1000);
+
+    // Atribui uma função para ser executada sempre que houver uma mudança de ado
+    xmlreq.onreadystatechange = function(){
+
+      // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+      if (xmlreq.readyState == 4) {
+
+        // Verifica se o arquivo foi encontrado com sucesso
+        if (xmlreq.status == 200) {
+
+          result.innerHTML = xmlreq.responseText;
+          document.getElementById("divOptions").value = result.innerHTML;
+        }else{
+          result.innerHTML = "Erro: " + xmlreq.statusText;
+        }
+      }
+    };
+    xmlreq.send(null);
+
+  };
 
 //Função que carrega todas as mensagens e mostra dinâmicamente
 function searchMessages() {
@@ -63,7 +107,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 60000);
+ setTimeout(searchMessages, 1000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
