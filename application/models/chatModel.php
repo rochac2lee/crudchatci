@@ -15,4 +15,9 @@ class chatModel extends CI_Model {
     return $this -> db -> get("message") -> result();
   }
 
+  public function viewloggedUsers() {
+    $this -> db -> where("nome !=", $_SESSION['loggedUser']['nome']);
+    return $this -> db -> get("users") -> result();
+  }
+
 }

@@ -25,4 +25,9 @@ class Chat extends CI_Controller {
 		$this->load->view('pages/message', $data);
 	}
 
+	public function viewloggedUsers() {
+		$data["users"] = $this -> chatModel -> viewloggedUsers();
+		$this->load->view('pages/loggedUsers', $data);
+	}
+
 }

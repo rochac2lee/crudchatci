@@ -26,6 +26,10 @@ h3 {
   float: right;
 }
 
+.noMessage {
+  color: rgba(255, 255, 255, .95);
+}
+
 .btn-clear {
   display: none;
   margin-left: 10px;
@@ -45,11 +49,50 @@ h3 {
   border-radius: 50%;
 }
 
-.nameUser {
-  color: rgba(255, 255, 255, .95);
+.me {
+  color: #fff;
+  font-weight: 500;
   display: inline-flex;
   vertical-align: top;
   font-size: 1.5em;
+  margin-left: 15px;
+}
+
+.nameUser {
+  color: #212527;
+  font-weight: 500;
+  display: inline-flex;
+  vertical-align: top;
+  font-size: 1.5em;
+  margin-left: 15px;
+}
+
+.dot {
+  color: #4caf50;
+  margin-right: 5px;
+}
+
+.linkLoggedusers {
+  margin-bottom: 0;
+}
+
+.btn-loggedUsers {
+    color: #fff;
+    width: 100%;
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+}
+
+.btn-loggedUsers:focus {
+    color: #fff;
+    background-color: #4458c9;
+    border-color: #3f51b5;
+}
+
+.btn-loggedUsers:hover {
+    color: #ccc;
+    background-color: #4458c9;
+    border-color: #3f51b5;
 }
 
 .space {

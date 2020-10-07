@@ -5,16 +5,24 @@
         <div class="col-md-4">
           <h3 class="title"><?= $title ?></h3> <i onclick=window.location.href="<?= base_url() ?>login/logout" class="close right fa fa-2x fa-sign-out-alt"></i>
           <div class="users">
-            <img class="thumb" src="<?= base_url() ?>images/user.png">
-            <p class="nameUser"><?= $_SESSION['loggedUser']['nome'] ?></p>
+            <img class="thumb" src="<?= base_url() ?>images/user.png"><p class="me">Bem Vindo, <?= $_SESSION['loggedUser']['nome'] ?>!</p>
           </div>
-          <!-- Lista os usuários logados -->
-          <div class="loggedUsers">
+
+          <p class="linkLoggedusers">
+            <button class="btn btn-loggedUsers" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <i class="dot fas fa-circle"></i> Usuários Online
+            </button>
+          </p>
+          <div class="collapse show" id="collapseExample">
+            <div class="card card-body">
+              <!-- Lista os usuários logados -->
+              <div id="loggedUsers" class="loggedUsers"></div>
+            </div>
           </div>
+
         </div>
         <div class="col-md-8">
-          <div id="allMessages" class="allMessages">
-        </div>
+          <div id="allMessages" class="allMessages"></div>
 
           <div class="clearfix"></div>
 

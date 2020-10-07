@@ -53,6 +53,8 @@ function CriaRequest() {
  else
    return request;
 }
+
+//Função que carrega todas as mensagens e mostra dinâmicamente
 function searchMessages() {
 
  // Declaração de Variáveis
@@ -61,7 +63,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 1000);
+ setTimeout(searchMessages, 60000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
@@ -86,6 +88,38 @@ function searchMessages() {
  };
  xmlreq.send(null);
 }; searchMessages();
+
+//Função que busca os usuários logados e lista dinâmicamente
+function searchLoggedUsers() {
+
+ // Declaração de Variáveis
+ var loggedUsers = document.getElementById("loggedUsers");
+ var xmlreq = CriaRequest();
+
+ // Iniciar uma requisição
+ xmlreq.open("GET", "<?= base_url() ?>chat/viewloggedUsers", true);
+ setTimeout(searchLoggedUsers, 1000);
+
+ // Atribui uma função para ser executada sempre que houver uma mudança de ado
+ xmlreq.onreadystatechange = function(){
+
+   // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+   if (xmlreq.readyState == 4) {
+
+     // Verifica se o arquivo foi encontrado com sucesso
+     if (xmlreq.status == 200) {
+
+       loggedUsers.innerHTML = xmlreq.responseText;
+       document.getElementById("loggedUsers").value = loggedUsers.innerHTML;
+
+      //alert(result);
+     }else{
+       result.innerHTML = "Erro: " + xmlreq.statusText;
+     }
+   }
+ };
+ xmlreq.send(null);
+}; searchLoggedUsers();
 
 $('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
 
