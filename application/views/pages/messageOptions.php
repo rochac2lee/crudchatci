@@ -16,8 +16,8 @@ if($message != null) {
     <div class="dropdown dropdownOptionsDelete animated fadeInRight" id="divOptionConfirmDelete">
       <div class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
         <p class="textConfirm">Deseja realmente excluir essa mensagem?</p>
-        <a class="dropdown-item optionConfirm" id="actionConfirm" href="javascript:void(0)" onclick="confirm('.$m->id.')">Sim</a>
-        <a class="dropdown-item optionCancel" id="actionCancel" href="javascript:void(0)" onclick="confirm('.$m->id.')">Cancelar</a>
+        <a class="dropdown-item optionConfirm" id="actionConfirm" href="javascript:void(0)" onclick="deleteMessage('.$m->id.')">Sim</a>
+        <a class="dropdown-item optionCancel" id="actionCancel" href="javascript:void(0)" onclick="cancelMessageDelete()">Cancelar</a>
       </div>
     </div>
 

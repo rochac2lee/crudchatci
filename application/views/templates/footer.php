@@ -7,15 +7,24 @@
 
 // Fecha o dropdown se clicar fora
 $("body").on("click", function() {
-    var divOptions = document.querySelector(".options");
-    var dropdownOptions = document.querySelector(".dropdownOptions");
-   dropdownOptions.classList.add('fadeOutRight');
+  var divOptions = document.querySelector(".options");
+  var dropdownOptions = document.querySelector(".dropdownOptions");
+  dropdownOptions.classList.add('fadeOutRight');
 });
 
 function confirmMessageDelete() {
   document.getElementById('divOptionConfirmDelete').style.display = "block";
   document.getElementById('actionConfirm').style.display = "block";
   document.getElementById('actionCancel').style.display = "block";
+}
+
+function cancelMessageDelete() {
+  var divOptions = document.querySelector(".dropdownOptionsDelete");
+  document.getElementById('divOptionConfirmDelete').classList.add('fadeOutRight');
+  setTimeout(function(){
+    document.getElementById('divOptionConfirmDelete').style.display = "none";
+  }, 1000);
+
 }
 
 //Função de Requisições
@@ -50,7 +59,7 @@ function clearMessage() {
 $(document).ready(function() {
   $("#btnNewMessage").click(function() {
   var message = document.getElementById("message").value;
-  var autor   = $('.nameUser').text();
+  var autor   = "<?= $_SESSION['loggedUser']['nome'] ?>";
   var date    = $('.clock').text();
 
     $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
@@ -68,35 +77,63 @@ $(document).ready(function() {
 });
 
 //Função que adiciona novas mensagens
-  function options(id) {
+function options(id) {
 
-    // Declaração de Variáveis
-    var result = document.getElementById("divOptions");
-    var xmlreq = CriaRequest();
+  // Declaração de Variáveis
+  var result = document.getElementById("divOptions");
+  var xmlreq = CriaRequest();
 
-    // Iniciar uma requisição
-    xmlreq.open("GET", "<?= base_url() ?>chat/viewMessageOptions/" + id, true);
-    //setTimeout(viewAlmPCItens, 1000);
+  // Iniciar uma requisição
+  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessageOptions/" + id, true);
+  //setTimeout(viewAlmPCItens, 1000);
 
-    // Atribui uma função para ser executada sempre que houver uma mudança de ado
-    xmlreq.onreadystatechange = function(){
+  // Atribui uma função para ser executada sempre que houver uma mudança de ado
+  xmlreq.onreadystatechange = function(){
 
-      // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
-      if (xmlreq.readyState == 4) {
+    // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+    if (xmlreq.readyState == 4) {
 
-        // Verifica se o arquivo foi encontrado com sucesso
-        if (xmlreq.status == 200) {
+      // Verifica se o arquivo foi encontrado com sucesso
+      if (xmlreq.status == 200) {
 
-          result.innerHTML = xmlreq.responseText;
-          document.getElementById("divOptions").value = result.innerHTML;
-        }else{
-          result.innerHTML = "Erro: " + xmlreq.statusText;
-        }
+        result.innerHTML = xmlreq.responseText;
+        document.getElementById("divOptions").value = result.innerHTML;
+      }else{
+        result.innerHTML = "Erro: " + xmlreq.statusText;
       }
-    };
-    xmlreq.send(null);
-
+    }
   };
+  xmlreq.send(null);
+
+};
+
+//Função que envia o id da mensagem a ser excluída para o backend
+function deleteMessage(id) {
+
+  // Declaração de Variáveis
+  var xmlreq = CriaRequest();
+
+  // Iniciar uma requisição
+  xmlreq.open("GET", "<?= base_url() ?>chat/deleteMessage/" + id, true);
+  //setTimeout(viewAlmPCItens, 1000);
+
+  // Atribui uma função para ser executada sempre que houver uma mudança de ado
+  xmlreq.onreadystatechange = function(){
+
+    // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+    if (xmlreq.readyState == 4) {
+
+      // Verifica se o arquivo foi encontrado com sucesso
+      if (xmlreq.status == 200) {
+
+      }else{
+        result.innerHTML = "Erro: " + xmlreq.statusText;
+      }
+    }
+  };
+  xmlreq.send(null);
+
+};
 
 //Função que carrega todas as mensagens e mostra dinâmicamente
 function searchMessages() {
@@ -107,7 +144,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 1000);
+ setTimeout(searchMessages, 60000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){

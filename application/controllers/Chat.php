@@ -30,6 +30,10 @@ class Chat extends CI_Controller {
 		$this->load->view('pages/messageOptions', $data);
 	}
 
+	public function deleteMessage($id) {
+    $this -> chatModel -> deleteMessage($id);
+  }
+
 	public function viewloggedUsers() {
 		$data["users"] = $this -> chatModel -> viewloggedUsers();
 		$this->load->view('pages/loggedUsers', $data);

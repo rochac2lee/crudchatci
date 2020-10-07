@@ -11,12 +11,19 @@ class chatModel extends CI_Model {
   }
 
   public function viewMessage() {
+    $this -> db -> where("visible", 0);
     $this -> db -> order_by("id", "ASC");
     return $this -> db -> get("message") -> result();
   }
 
   public function viewMessageOptions($id) {
     return $this -> db -> get_where("message", array('id' => $id)) -> result();
+  }
+
+  public function deleteMessage($id) {
+    $this -> db -> set("visible", 1);
+    $this -> db -> where("id", $id);
+    return $this -> db -> update("message");
   }
 
   public function viewloggedUsers() {
