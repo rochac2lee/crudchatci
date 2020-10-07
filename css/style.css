@@ -193,7 +193,7 @@ h3 {
   padding: 15px;
   background-color: #445379;
   border-radius: 15px;
-  box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07) !important;
+  box-shadow: inset 0px 50px 57px -34px #112043;
   overflow-y: scroll;
 }
 
@@ -230,6 +230,7 @@ h3 {
 }
 
 .textMessageRight {
+  min-width: 20%;
   max-width: 45%;
   margin-right: 10px;
   float: right;
@@ -291,4 +292,8 @@ h3 {
 
 #messageToEdit {
   display: none;
+}
+
+.noUsers {
+  opacity: 0.5;
 }

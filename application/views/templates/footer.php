@@ -78,15 +78,18 @@ function newMessage(id) {
     var edited  = 1;
     var date    = $('.clock').text();
 
-    $.post("<?= base_url() ?>chat/editMessage/" + id, {message: message, autor: autor, edited: edited, date: date},
-    function(data) {
-      $("#return").html(data);
-    } , "html");
+    //não permite enviar mensagem editada vazia
+    if (message != "") {
+      $.post("<?= base_url() ?>chat/editMessage/" + id, {message: message, autor: autor, edited: edited, date: date},
+      function(data) {
+        $("#return").html(data);
+      } , "html");
 
-    document.getElementById("message").value = "";
-    document.getElementById("divMessage").classList.remove('is-focused');
-    document.getElementById("divMessage").classList.remove('is-filled');
-    document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>';
+      document.getElementById("message").value = "";
+      document.getElementById("divMessage").classList.remove('is-focused');
+      document.getElementById("divMessage").classList.remove('is-filled');
+      document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>';
+    }
 
   } else {
 
@@ -96,16 +99,21 @@ function newMessage(id) {
     var autor   = "<?= $_SESSION['loggedUser']['nome'] ?>";
     var date    = $('.clock').text();
 
-    $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
-    function(data) {
-      $("#return").html(data);
-    } , "html");
+    //não permite enviar mensagem vazia
+    if (message != "  ") {
+      $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
+      function(data) {
+        $("#return").html(data);
+      } , "html");
 
-    document.getElementById("message").value = "";
-    document.getElementById("divMessage").classList.remove('is-focused');
-    document.getElementById("divMessage").classList.remove('is-filled');
+      document.getElementById("message").value = "";
+      document.getElementById("divMessage").classList.remove('is-focused');
+      document.getElementById("divMessage").classList.remove('is-filled');
+    }
 
   }
+
+  descMessages();
 
 };
 

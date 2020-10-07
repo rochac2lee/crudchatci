@@ -12,7 +12,7 @@ class chatModel extends CI_Model {
 
   //Busca a mensagens não excluídas
   public function viewMessage() {
-    $this -> db -> where("visible", 1);
+    $this -> db -> where("visible =", 1);
     $this -> db -> order_by("id", "ASC");
     return $this -> db -> get("message") -> result();
   }
