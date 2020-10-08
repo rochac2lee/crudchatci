@@ -7,7 +7,7 @@ Essa aplicação é um chat de troca de mensagens em tempo real com PHP e MySQL 
 ## Funções Disponíveis
 * [ ] Login apenas com o nome
 * [ ] Envio/Recebimento de Mensagem
-* [ ] Edição/Exclusão de Mensagens enviadas
+* [ ] Edição/Exclusão[Soft Delete] de Mensagens enviadas
 * [ ] Uploads de Arquivos (imagens, pdf, word, excel e powerpoint)
 * [ ] Visualização de Imagens Enviadas/Recebidas
 * [ ] Validação de usuários ativos
@@ -28,7 +28,7 @@ Essa aplicação é um chat de troca de mensagens em tempo real com PHP e MySQL 
 - No Seu banco de Dados importe o arquivo crudchatci.sql
 - Acesse a aplicação http://[SEU_SERVIDOR]/crudchatci/
 
-## Crédito
+## Créditos
 
 - Cleberli da Rocha - https://github.com/rochac2lee
 
