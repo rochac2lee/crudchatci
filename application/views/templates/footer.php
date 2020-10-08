@@ -76,11 +76,11 @@ function newMessage(id) {
 
     var message = document.getElementById("message").value;
     var edited  = 1;
-    var date    = $('.clock').text();
+    var time    = $('.time').text();
 
     //não permite enviar mensagem editada vazia
     if (message != "") {
-      $.post("<?= base_url() ?>chat/editMessage/" + id, {message: message, autor: autor, edited: edited, date: date},
+      $.post("<?= base_url() ?>chat/editMessage/" + id, {message: message, autor: autor, edited: edited, time: time},
       function(data) {
         $("#return").html(data);
       } , "html");
@@ -95,13 +95,14 @@ function newMessage(id) {
 
     //envia a nova mensagem
 
-    var message = document.getElementById("message").value;
-    var autor   = "<?= $_SESSION['loggedUser']['nome'] ?>";
-    var date    = $('.clock').text();
+    var messageFiles = document.getElementsByName("messageFiles[]");
+    var message      = document.getElementById("message").value;
+    var autor        = "<?= $_SESSION['loggedUser']['nome'] ?>";
+    var time         = $('.time').text();
 
     //não permite enviar mensagem vazia
-    if (message != "  ") {
-      $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, date: date},
+    if (message != "") {
+      $.post("<?= base_url() ?>chat/newMessage", {message: message, autor: autor, time: time},
       function(data) {
         $("#return").html(data);
       } , "html");
@@ -126,7 +127,6 @@ function options(id) {
 
   // Iniciar uma requisição
   xmlreq.open("GET", "<?= base_url() ?>chat/viewMessageOptions/" + id, true);
-  //setTimeout(viewAlmPCItens, 1000);
 
   // Atribui uma função para ser executada sempre que houver uma mudança de ado
   xmlreq.onreadystatechange = function(){
@@ -136,7 +136,6 @@ function options(id) {
 
       // Verifica se o arquivo foi encontrado com sucesso
       if (xmlreq.status == 200) {
-
         result.innerHTML = xmlreq.responseText;
         document.getElementById("divOptions").value = result.innerHTML;
       }else{
@@ -191,7 +190,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 1000);
+ setTimeout(searchMessages, 60000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){

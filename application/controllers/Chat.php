@@ -7,6 +7,7 @@ class Chat extends CI_Controller {
 		parent::__construct();
 		permission(); //Valida se o usuário tem sessão no navegador [função contruída no arquivo AUTH_HELPER]
 		$this->load->model('chatModel');
+		$this->load->model('uploadModel');
 	}
 
 	public function index()	{
@@ -40,6 +41,13 @@ class Chat extends CI_Controller {
 		$this -> chatModel -> editMessage($id, $editMessage);
 	}
 
+	//envio de arquivos
+	public function newFile() {
+		$uploadFiles = $_POST;
+		$this -> uploadModel -> newFile($uploadFiles);
+	}
+
+	//busca usuários ativos
 	public function viewloggedUsers() {
 		$data["users"] = $this -> chatModel -> viewloggedUsers();
 		$this->load->view('pages/loggedUsers', $data);

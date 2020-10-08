@@ -9,5 +9,5 @@
     }
 
   } else {
-    echo '<div class="noMessage"><i class="far fa-users"></i> Apenas você está online!<div class="clearfix"></div>';
+    echo '<div class="lblNoUsers"><i class="fa fa-users"></i> Apenas você está online!<div class="clearfix"></div>';
   }
