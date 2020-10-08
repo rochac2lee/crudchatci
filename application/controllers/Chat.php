@@ -10,6 +10,8 @@ class Chat extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		
+		/** A Função permission é um helper que valida se o usuário já possui uma sessão ativa, caso não, o usuário será redirecionado para tela de login  */
 		permission();
 
 		$this->load->model('chatModel');
