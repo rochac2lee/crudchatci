@@ -71,5 +71,4 @@ function uploadFiles($filesToSend) {
       /** armazena os arquivos na pasta especificada */ 
       move_uploaded_file($tmp, $folder.'/'.$sendedFile);
     }
-
 }
