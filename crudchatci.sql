@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 07-Out-2020 às 22:54
+-- Generation Time: 08-Out-2020 às 20:23
 -- Versão do servidor: 5.7.24
 -- versão do PHP: 7.3.1
 
@@ -32,6 +32,8 @@ DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `autor` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `fileType` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `message` longtext COLLATE utf8_unicode_ci NOT NULL,
   `time` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `edited` tinyint(1) NOT NULL,

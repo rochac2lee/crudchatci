@@ -1,35 +1,34 @@
-###################
-Chat usando CodeIgniter
-###################
+# Chat com CodeIgniter
+> Desafio para ingressar como Desenvolvedor PHP FullStack Jr. na ENTERness em Curitiba-PR
 
-Essa aplicação é um chat de troca de mensagens em tempo real com PHP e MySQL no Back-End e CSS,
-HTML, JS
+## Sobre o Chat
+Essa aplicação é um chat de troca de mensagens em tempo real com PHP e MySQL no Back-End e CSS, HTML, JS no Front-End
 
-*******************
-Server Requirements
-*******************
+## Funções Disponíveis
+* [ ] Login apenas com o nome
+* [ ] Envio/Recebimento de Mensagem
+* [ ] Edição/Exclusão de Mensagens enviadas
+* [ ] Uploads de Arquivos (imagens, pdf, word, excel e powerpoint)
+* [ ] Visualização de Imagens Enviadas/Recebidas
+* [ ] Validação de usuários ativos
 
-- PHP versão 5.6 ou mais novo.
-- DB Mysql.
+## Screeshoots
+
+![Chat](images/screenshot.png?raw=true "Chat")
 
 
-************
-Installation
-************
+## Instalação
 
-Rode em seu banco de dados o script "crudchatci.sql".
+- [Baixe](https://github.com/rochac2lee/crudchatci/archive/master.zip) ou Clone a aplicação: git clone https://github.com/rochac2lee/crudchatci.git 
 
-Edite as Configurações de Banco de Dados em Aplication/database.php
+- Configure o arquivo application/databese.php com as configurações do seu servidor
+	- Linha 78 -> ['hostname'] O nome do host do seu servidor de banco de dados.
+	- Linha 79 -> ['username'] O nome de usuário usado para conectar ao banco de dados
+	- Linha 80 -> ['password'] A senha usada para conectar ao banco de dados
+- No Seu banco de Dados importe o arquivo crudchatci.sql
+- Acesse a aplicação http://[SEU_SERVIDOR]/crudchatci/
 
-*******
-License
-*******
+## Crédito
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+- Cleberli da Rocha - https://github.com/rochac2lee
 
-***************
-Desenvolvedor
-***************
-
-Cleberli da Rocha - rochac2lee
