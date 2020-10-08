@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * ChatDocument
- *
  * Documentação da Classe do Controler Chat
  *
  * @copyright (c) 2020, Cleberli da Rocha
@@ -22,9 +20,9 @@ class Chat extends CI_Controller {
 	//CHAT
 
 	/**
-	 * index
+	 * Método Index da Classe Chat
 	 *
-	 * @return view
+	 * @return view Chat
 	 */
 	public function index()	{
 		/** @param object $data recebe os dados das mensagens e o titulo e envia para view  */

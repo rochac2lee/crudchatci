@@ -3,8 +3,9 @@
 $this -> load -> view("templates/header");
 
 $chatDoc = new Chat();
-$newMessage = $chatDoc->;
+$chatDoc = new Login();
+//$newMessage = $chatDoc->chat;
 
-echo $newMessage;
+//echo $newMessage;
 
 $this -> load -> view("templates/footer");
