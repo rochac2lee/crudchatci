@@ -1,5 +1,7 @@
 <?php
 
+/** Opções de edição/exclusão das mensagens serão renderizadas pela função options() no JS */
+
 if($message != null) {
 
   foreach ($message as $m) {

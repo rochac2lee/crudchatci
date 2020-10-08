@@ -1,6 +1,6 @@
 <?php
 
-  //Lista os usuários logados
+/** Lista os usuários logados pela função searchLoggedUsers() no JS */
 
   if($users != null) {
 

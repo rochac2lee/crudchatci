@@ -1,9 +1,11 @@
 <?php
 
-//hora atual do servidor para ir junto com as mensagens pro banco
+/** Mensagens serão renderizadas pela função searchMessages() no JS 
+ * 
+ * Função dateTime mostra a hora atual do servidor para ir junto com as mensagens pro banco */
 echo "<p class='time'> ".dateTime()." </p>";
 
-//valida se tem alguma mensagem
+/** Valida se tem alguma mensagem */
 if($messages != null) {
 
   foreach ($messages as $m) {
@@ -13,6 +15,7 @@ if($messages != null) {
 
     if ($file != null) { $noTime = "noTime"; } else { $noTime = ""; $viewFile = ""; }
 
+    /** Identifica o tipo do arquivo */
     switch ($fileType) {
 
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
@@ -57,7 +60,15 @@ if($messages != null) {
 
     }
 
-    //verifica o usuário ativo para mostrar as mensagens no lado certo da tela
+    if ($fileType === 'audio/ogg' || $fileType === 'audio/mpeg') {
+        $viewFile = "
+        <a href='./uploads/$file'>
+          <img class='viewFileDoc' src='./images/audio.png'>
+        </a>
+        ";
+    }
+
+    /** Verifica o usuário ativo para mostrar as mensagens no lado certo da tela */
     if ($m->autor == $_SESSION['loggedUser']['nome']) {
         echo '
           <div id="viewMessage" onclick=options('.$m->id.')>
@@ -74,7 +85,7 @@ if($messages != null) {
           <div class="clearfix"></div>
         ';
     } else {
-      //se tiver apenas 1 usuário ativo deixa com opacidade o que já foi escrito pelos outros usuários
+      /** Se tiver apenas 1 usuário ativo deixa com opacidade o que já foi escrito pelos outros usuários */
       if ($users == null) { $classUser = "noUsers"; } else { $classUser = ""; };
       echo '
         <div id="viewMessage" class="'.$classUser.'">

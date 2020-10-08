@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Documentação da Classe do Controler Login
+ * Classe do Controler Login
  *
  * @copyright (c) 2020, Cleberli da Rocha
  */

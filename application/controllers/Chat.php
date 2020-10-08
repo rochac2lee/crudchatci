@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Documentação da Classe do Controler Chat
+ * Classe do Controler Chat
  *
  * @copyright (c) 2020, Cleberli da Rocha
  */
@@ -10,7 +10,7 @@ class Chat extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		
+
 		/** A Função permission é um helper que valida se o usuário já possui uma sessão ativa, caso não, o usuário será redirecionado para tela de login  */
 		permission();
 
