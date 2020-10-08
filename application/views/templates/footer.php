@@ -95,7 +95,6 @@ function newMessage(id) {
 
     //envia a nova mensagem
 
-    var messageFiles = document.getElementsByName("messageFiles[]");
     var message      = document.getElementById("message").value;
     var autor        = "<?= $_SESSION['loggedUser']['nome'] ?>";
     var time         = $('.time').text();
@@ -117,6 +116,56 @@ function newMessage(id) {
   descMessages();
 
 };
+
+//função para envio de imagens junto com a mensagem
+function sendFiles() {
+  var messageFiles = document.querySelector("#messageFiles");
+  var autor        = "<?= $_SESSION['loggedUser']['nome'] ?>";
+  var time         = $('.time').text();
+
+  var form = $('#formMessage')[0];
+
+  var files = messageFiles.files;
+  var formData = new FormData(form);
+
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        formData.append('files[]', file);
+        var filesToUpload = file.name;
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "<?= base_url() ?>chat/saveFiles",
+            data: formData,
+            processData: false, // impedir que o jQuery tranforma a "data" em querystring
+            contentType: false, // desabilitar o cabeçalho "Content-Type"
+            cache: false, // desabilitar o "cache"
+            // manipular o sucesso da requisição
+            success: function (data) {
+                console.log(data);
+            },
+            // manipular erros da requisição
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
+        /* $.post("<?= base_url() ?>chat/saveFiles", { body: formData },
+        function(data) {
+          $("#return").html(data);
+        } , "html"); */
+
+        $.post("<?= base_url() ?>chat/newFile", {files: filesToUpload, autor: autor, time: time},
+        function(data) {
+          $("#return").html(data);
+        } , "html");
+      }
+
+    document.getElementById("message").value = "";
+    document.getElementById("divMessage").classList.remove('is-focused');
+    document.getElementById("divMessage").classList.remove('is-filled');
+}
 
 //Passa o id da mensagem como parametro para as opções de editar e excluir
 function options(id) {
@@ -190,7 +239,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 60000);
+ setTimeout(searchMessages, 1000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
@@ -249,7 +298,7 @@ descMessages();
 
 //Deixa sempre visível as ultimas mensagens enviadas
 function descMessages() {
-  $('#allMessages').animate({scrollTop: document.body.scrollHeight},"fast");
+  $('#allMessages').animate({scrollTop: 9999},"slow");
 }
 
 </script>

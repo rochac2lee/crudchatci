@@ -1,31 +1,32 @@
 <?php
 
-function uploadFiles() {
+function uploadFiles($filesToSend) {
 
-  $filesToSend   = $_FILES['uploadBanner'];
-  $numFile       = count(array_filter($banner['name']));
+  $filesToSend   = $_FILES['files'];
+  $numFile       = count(array_filter($filesToSend['name']));
 
   //requisitos
   $permite 	= array('image/bmp', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png');
   $maxSize	= 1024 * 1024 * 24;
 
   //pasta
-  $folder = base_url().'uploads/banner';
+  $folder = './uploads';
 
 		//Faz o upload de multiplos arquivos
 		for ($count = 0; $count < $numFile; $count++) {
-			$name	 = $banner['name'][$count];
-			$type	 = $banner['type'][$count];
-			$size	 = $banner['size'][$count];
-			$error = $banner['error'][$count];
-			$tmp	 = $banner['tmp_name'][$count];
+			$name	 = $filesToSend['name'][$count];
+			$type	 = $filesToSend['type'][$count];
+			$size	 = $filesToSend['size'][$count];
+			$error = $filesToSend['error'][$count];
+			$tmp	 = $filesToSend['tmp_name'][$count];
 
-			$sendedFile = array($name);
+			//$data['sendedFile'] += $name;
+      $sendedFile = $name;
 
       //armazena os arquivos na pasta especificada
-      move_uploaded_file($tmp, $folder.'/'.$banner);
+      if (move_uploaded_file($tmp, $folder.'/'.$sendedFile)) {$mensagem = "Sucesso!";} else {$mensagem = "deu ruim";};
     }
 
-  return $sendedFile;
+  return print_r($filesToSend);
 
 }

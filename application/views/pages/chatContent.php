@@ -28,7 +28,7 @@
 
           <div class="clearfix"></div>
 
-          <form action="javascript:void(0)" method="post" enctype="multipart/form-data">
+          <form action="javascript:void(0)" method="post" id="formMessage" enctype="multipart/form-data">
             <div id="divMessage" class="form-group">
               <textarea class="form-control message" id="message" rows="3" placeholder="Digite uma mensagem..."></textarea>
             </div>
@@ -37,7 +37,7 @@
 
               <!-- Ações para envio de arquivos -->
               <label type="button" for="messageFiles" id="btnNewFiles" class="btn btn-file btn-primary bmd-btn-fab"><i class="fa fa-paperclip"></i></label>
-              <input type="file" id="messageFiles" multiple onchange="preview_image(event)" name="messageFiles[]" style="display:none">
+              <input type="file" id="messageFiles" multiple onchange="sendFiles()" name="messageFiles[]" style="display:none">
 
               <!-- Ações para da mensagem -->
               <button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>
