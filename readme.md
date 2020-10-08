@@ -7,6 +7,7 @@ Essa aplicação é um chat de troca de mensagens em tempo real com PHP e MySQL 
 ## Funções Disponíveis
 * [ ] Login apenas com o nome
 * [ ] Envio/Recebimento de Mensagem
+* [ ] Carregamento de Mensagens Anteriores
 * [ ] Edição/Exclusão[Soft Delete] de Mensagens enviadas
 * [ ] Uploads de Arquivos (imagens, pdf, word, excel e powerpoint)
 * [ ] Visualização de Imagens Enviadas/Recebidas
