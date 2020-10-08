@@ -13,9 +13,20 @@ if($messages != null) {
 
     switch ($fileType) {
       case 'image/jpeg' || 'image/jpg' || 'image/gif' || 'image/png':
-          $viewFile = "<img class='viewFile' src='./uploads/$file'>";
-        break;
+          $viewFile = "
+            <a data-fancybox='gallery' href='./uploads/$file'>
+              <img class='viewFile' src='./uploads/$file'>
+            </a>
+          ";
+      break;
 
+      case 'application/msword' || 'application/vnd.ms-excel' || 'application/vnd.ms-powerpoint' || 'application/pdf':
+          $viewFile = "
+            <a data-fancybox='gallery' href='./uploads/$file'>
+              <img class='viewFile' src='./uploads/$file'>
+            </a>
+          ";
+      break;
     }
 
     //verifica o usuário ativo para mostrar as mensagens no lado certo da tela

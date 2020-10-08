@@ -6,7 +6,34 @@ function uploadFiles($filesToSend) {
   $numFile       = count(array_filter($filesToSend['name']));
 
   //requisitos
-  $permite 	= array('image/bmp', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png');
+  $permite 	= array (
+
+  'application/msword',
+
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+  'application/vnd.ms-word.document.macroEnabled.12',
+
+  'application/vnd.ms-excel',
+
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+  'application/vnd.ms-excel.sheet.macroEnabled.12',
+  'application/vnd.ms-excel.template.macroEnabled.12',
+  'application/vnd.ms-excel.addin.macroEnabled.12',
+  'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
+
+  'application/vnd.ms-powerpoint',
+
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'application/vnd.openxmlformats-officedocument.presentationml.template',
+  'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+  'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+  'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+  'application/vnd.ms-powerpoint.template.macroEnabled.12',
+  'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
+
+  'application/pdf', 'audio/mp3', 'audio/ogg', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png');
   $maxSize	= 1024 * 1024 * 24;
 
   //pasta
