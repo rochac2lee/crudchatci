@@ -11,12 +11,38 @@ if($messages != null) {
     $file     = $m->file;
     $fileType = $m->fileType;
 
+    if ($file != null) { $noTime = "noTime"; } else { $noTime = ""; $viewFile = ""; }
+
     switch ($fileType) {
 
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
           $viewFile = "
             <a href='./uploads/$file'>
               <img class='viewFileDoc' src='./images/word.png'>
+            </a>
+          ";
+      break;
+
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        $viewFile = "
+          <a href='./uploads/$file'>
+            <img class='viewFileDoc' src='./images/excel.png'>
+          </a>
+        ";
+      break;
+
+      case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+          $viewFile = "
+            <a href='./uploads/$file'>
+              <img class='viewFileDoc' src='./images/powerpoint.png'>
+            </a>
+          ";
+      break;
+
+      case 'application/pdf':
+          $viewFile = "
+            <a href='./uploads/$file'>
+              <img class='viewFileDoc' src='./images/pdf.png'>
             </a>
           ";
       break;
@@ -29,9 +55,6 @@ if($messages != null) {
           ";
       break;
 
-
-      case 'application/vnd.ms-excel' || 'application/vnd.ms-powerpoint' || 'application/pdf':
-      break;
     }
 
     //verifica o usuário ativo para mostrar as mensagens no lado certo da tela
@@ -45,7 +68,7 @@ if($messages != null) {
               <br />
               <span class="right">'.$m->message.'</span>
               <span class="right">'.$viewFile.'</span>
-              <span class="messageTimeRight">'.$m->time.'</span>
+              <span class="'.$noTime.' messageTimeRight">'.$m->time.'</span>
             </p>
           </div>
           <div class="clearfix"></div>
@@ -61,7 +84,9 @@ if($messages != null) {
             <br />
             <span>'.$m->message.'</span>
             <br />
-            <span class="messageTimeLeft">'.$m->time.'</span>
+            <span class="right">'.$viewFile.'</span>
+            <br />
+            <span class="'.$noTime.' messageTimeLeft">'.$m->time.'</span>
           </p>
         </div>
         <div class="clearfix"></div>';

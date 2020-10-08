@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Esta função serve para realizar o upload dos arquivos
+ */
 function uploadFiles($filesToSend) {
 
   $filesToSend   = $_FILES['files'];
@@ -53,7 +56,5 @@ function uploadFiles($filesToSend) {
       //armazena os arquivos na pasta especificada
       if (move_uploaded_file($tmp, $folder.'/'.$sendedFile)) {$mensagem = "Sucesso!";} else {$mensagem = "deu ruim";};
     }
-
-  return print_r($filesToSend);
 
 }

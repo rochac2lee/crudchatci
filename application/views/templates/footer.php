@@ -89,7 +89,8 @@ function newMessage(id) {
       document.getElementById("message").value = "";
       document.getElementById("divMessage").classList.remove('is-focused');
       document.getElementById("divMessage").classList.remove('is-filled');
-      document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="right btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>';
+      document.getElementById("divBtnSendMessage").innerHTML='<button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button><label type="button" for="messageFiles" id="btnNewFiles" class="btn btn-file btn-info bmd-btn-fab"><i class="fa fa-paperclip"></i></label><input type="file" id="messageFiles" multiple onchange="sendFiles()" name="messageFiles[]" style="display:none">';
+
     }
 
   } else {
@@ -242,7 +243,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 60000);
+ setTimeout(searchMessages, 1000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){

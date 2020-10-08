@@ -35,12 +35,13 @@
             <button type="button" onclick="clearMessage()" class="btn btn-clear btn-default">Limpar</button>
             <div id="divBtnSendMessage">
 
-              <!-- Ações para envio de arquivos -->
-              <label type="button" for="messageFiles" id="btnNewFiles" class="btn btn-file btn-primary bmd-btn-fab"><i class="fa fa-paperclip"></i></label>
-              <input type="file" id="messageFiles" multiple onchange="sendFiles()" name="messageFiles[]" style="display:none">
-
               <!-- Ações para da mensagem -->
               <button type="button" id="btnNewMessage" onclick="newMessage();descMessages();" class="btn btn-send btn-primary btn-raised"><i class="space fa fa-paper-plane"></i> Enviar </button>
+
+              <!-- Ações para envio de arquivos -->
+              <label type="button" for="messageFiles" id="btnNewFiles" class="btn btn-file btn-info bmd-btn-fab"><i class="fa fa-paperclip"></i></label>
+              <input type="file" id="messageFiles" multiple onchange="sendFiles()" name="messageFiles[]" style="display:none">
+
             </div>
           </form>
         </div>
