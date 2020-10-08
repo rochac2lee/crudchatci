@@ -7,6 +7,17 @@ echo "<p class='time'> ".dateTime()." </p>";
 if($messages != null) {
 
   foreach ($messages as $m) {
+
+    $file     = $m->file;
+    $fileType = $m->fileType;
+
+    switch ($fileType) {
+      case 'image/jpeg' || 'image/jpg' || 'image/gif' || 'image/png':
+          $viewFile = "<img class='viewFile' src='./uploads/$file'>";
+        break;
+
+    }
+
     //verifica o usuário ativo para mostrar as mensagens no lado certo da tela
     if ($m->autor == $_SESSION['loggedUser']['nome']) {
         echo '
@@ -16,6 +27,7 @@ if($messages != null) {
               <i class="options fas fa-angle-down"></i>
               <strong class="right">'.$m->autor.'</strong>
               <br />
+              <span class="right">'.$viewFile.'</span>
               <span class="right">'.$m->message.'</span>
               <span class="messageTimeRight">'.$m->time.'</span>
             </p>

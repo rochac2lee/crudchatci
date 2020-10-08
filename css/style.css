@@ -332,3 +332,7 @@ h3 {
   text-align: center;
   color: #212527;
 }
+
+.viewFile {
+  width: 100%;
+}

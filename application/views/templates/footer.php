@@ -131,7 +131,8 @@ function sendFiles() {
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
         formData.append('files[]', file);
-        var filesToUpload = file.name;
+        var filesToUpload    = file.name;
+        var fileTypeToUpload = file.type;
 
         $.ajax({
             type: "POST",
@@ -156,7 +157,7 @@ function sendFiles() {
           $("#return").html(data);
         } , "html"); */
 
-        $.post("<?= base_url() ?>chat/newFile", {files: filesToUpload, autor: autor, time: time},
+        $.post("<?= base_url() ?>chat/newFileMessage", {file: filesToUpload, fileType: fileTypeToUpload, autor: autor, time: time},
         function(data) {
           $("#return").html(data);
         } , "html");
