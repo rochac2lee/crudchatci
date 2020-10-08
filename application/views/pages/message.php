@@ -12,6 +12,15 @@ if($messages != null) {
     $fileType = $m->fileType;
 
     switch ($fileType) {
+
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+          $viewFile = "
+            <a href='./uploads/$file'>
+              <img class='viewFileDoc' src='./images/word.png'>
+            </a>
+          ";
+      break;
+
       case 'image/jpeg' || 'image/jpg' || 'image/gif' || 'image/png':
           $viewFile = "
             <a data-fancybox='gallery' href='./uploads/$file'>
@@ -20,12 +29,8 @@ if($messages != null) {
           ";
       break;
 
-      case 'application/msword' || 'application/vnd.ms-excel' || 'application/vnd.ms-powerpoint' || 'application/pdf':
-          $viewFile = "
-            <a data-fancybox='gallery' href='./uploads/$file'>
-              <img class='viewFile' src='./uploads/$file'>
-            </a>
-          ";
+
+      case 'application/vnd.ms-excel' || 'application/vnd.ms-powerpoint' || 'application/pdf':
       break;
     }
 
@@ -38,8 +43,8 @@ if($messages != null) {
               <i class="options fas fa-angle-down"></i>
               <strong class="right">'.$m->autor.'</strong>
               <br />
-              <span class="right">'.$viewFile.'</span>
               <span class="right">'.$m->message.'</span>
+              <span class="right">'.$viewFile.'</span>
               <span class="messageTimeRight">'.$m->time.'</span>
             </p>
           </div>

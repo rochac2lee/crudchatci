@@ -120,6 +120,7 @@ function newMessage(id) {
 
 //função para envio de imagens junto com a mensagem
 function sendFiles() {
+  var message      = "Arquivo enviado:";
   var messageFiles = document.querySelector("#messageFiles");
   var autor        = "<?= $_SESSION['loggedUser']['nome'] ?>";
   var time         = $('.time').text();
@@ -158,7 +159,7 @@ function sendFiles() {
           $("#return").html(data);
         } , "html"); */
 
-        $.post("<?= base_url() ?>chat/newFileMessage", {file: filesToUpload, fileType: fileTypeToUpload, autor: autor, time: time},
+        $.post("<?= base_url() ?>chat/newFileMessage", {message: message, file: filesToUpload, fileType: fileTypeToUpload, autor: autor, time: time},
         function(data) {
           $("#return").html(data);
         } , "html");
@@ -241,7 +242,7 @@ function searchMessages() {
 
  // Iniciar uma requisição
  xmlreq.open("GET", "<?= base_url() ?>chat/viewMessage", true);
- setTimeout(searchMessages, 1000);
+ setTimeout(searchMessages, 60000);
 
  // Atribui uma função para ser executada sempre que houver uma mudança de ado
  xmlreq.onreadystatechange = function(){
